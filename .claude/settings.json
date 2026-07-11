@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:calorics-hj6c-eeiv5nzaa-lucasluz-codes-projects.vercel.app)",
+      "WebFetch(domain:agenciademarkenting.vercel.app)",
+      "WebFetch(domain:barbearia-rho-black.vercel.app)",
+      "WebFetch(domain:academia-nine-inky.vercel.app)",
+      "WebFetch(domain:restaurante-indol-five.vercel.app)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{url_effective}\\\\n\" \"https://academia-nine-inky.vercel.app/\")",
+      "Bash(curl -s \"https://academia-nine-inky.vercel.app/\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" \"https://calorics-hj6c-eeiv5nzaa-lucasluz-codes-projects.vercel.app/\")",
+      "Bash(start \"\" \"c:\\\\Users\\\\Lucas\\\\Desktop\\\\portifolio_\\\\portt\\\\index.html\")",
+      "Bash(find /c/Users/Lucas/AppData/Roaming/Code -iname \"*.png\" -newermt \"-20 minutes\" 2>/dev/null | head -30 *)",
+      "Read(//c/Users/Lucas/AppData/Roaming/Code/**)",
+      "Read(//c/Users/Lucas/AppData/Roaming/**)",
+      "Read(//c/Users/Lucas/AppData/Local/Temp/claude/**)"
+    ]
+  }
+}
