@@ -134,12 +134,14 @@ backToTop.addEventListener('click', () => {
 });
 
 /* ==========================================================================
-   8. FORMULÁRIO DE CONTATO (Web3Forms)
+   8. FORMULÁRIO DE CONTATO (sem backend: abre e-mail ou WhatsApp preenchido)
    ========================================================================== */
 const contactForm = document.getElementById('contactForm');
-const submitBtn = document.getElementById('submitBtn');
+const whatsappBtn = document.getElementById('whatsappBtn');
 const formStatus = document.getElementById('formStatus');
-const CHAVE_NAO_CONFIGURADA = 'COLE_SUA_CHAVE_WEB3FORMS_AQUI';
+
+const EMAIL_DESTINO = 'euprogramador484@gmail.com';
+const WHATSAPP_NUMERO = '5517981276715'; // formato internacional, só dígitos
 
 const validadores = {
   nome: (v) => {
@@ -194,62 +196,71 @@ if (contactForm) {
     });
   });
 
-  contactForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
+  // Retorna os dados do formulário se estiver tudo válido; senão foca o primeiro erro.
+  function coletarDados() {
     limparStatus();
 
-    // Valida todos os campos e foca no primeiro com erro.
     const invalidos = Object.keys(validadores).filter((campo) => !validarCampo(campo));
     if (invalidos.length) {
       contactForm.elements[invalidos[0]].focus();
-      return;
+      return null;
     }
 
-    const chave = contactForm.elements.access_key.value;
-    if (chave === CHAVE_NAO_CONFIGURADA) {
-      definirStatus(
-        'O formulário ainda não foi configurado. Use o WhatsApp ou o e-mail ao lado.',
-        'error'
-      );
-      console.warn(
-        'Web3Forms: falta a chave de acesso. Crie a sua em https://web3forms.com e ' +
-        'substitua o valor do input "access_key" no index.html.'
-      );
-      return;
-    }
+    const valor = (campo) => contactForm.elements[campo].value.trim();
+    return {
+      nome: valor('nome'),
+      email: valor('email'),
+      assunto: valor('assunto') || 'Contato pelo portfólio',
+      mensagem: valor('mensagem'),
+    };
+  }
 
-    const rotulo = submitBtn.querySelector('.contact__submit-label');
-    submitBtn.disabled = true;
-    submitBtn.classList.add('is-loading');
-    rotulo.textContent = 'Enviando...';
+  function enviarPorEmail(dados) {
+    const corpo =
+      `${dados.mensagem}\n\n` +
+      `---\nNome: ${dados.nome}\nE-mail: ${dados.email}`;
 
-    try {
-      const resposta = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: new FormData(contactForm),
-      });
-      const dados = await resposta.json();
+    const url =
+      `mailto:${EMAIL_DESTINO}` +
+      `?subject=${encodeURIComponent(dados.assunto)}` +
+      `&body=${encodeURIComponent(corpo)}`;
 
-      if (resposta.ok && dados.success) {
-        definirStatus('Mensagem enviada! Respondo o quanto antes. Obrigado pelo contato.', 'success');
-        contactForm.reset();
-        Object.keys(validadores).forEach((campo) => mostrarErro(campo, ''));
-      } else {
-        throw new Error(dados.message || 'Falha no envio');
-      }
-    } catch (erro) {
-      console.error('Erro ao enviar o formulário:', erro);
-      definirStatus(
-        'Não consegui enviar sua mensagem. Tente novamente ou fale comigo pelo WhatsApp.',
-        'error'
-      );
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.classList.remove('is-loading');
-      rotulo.textContent = 'Enviar mensagem';
-    }
+    window.location.href = url;
+    definirStatus(
+      'Abri seu app de e-mail com a mensagem pronta — é só clicar em enviar. ' +
+      `Se nada abrir, escreva direto para ${EMAIL_DESTINO}.`,
+      'success'
+    );
+  }
+
+  function enviarPorWhatsApp(dados) {
+    const texto =
+      `Olá, Lucas! Vim pelo seu portfólio.\n\n` +
+      `*Nome:* ${dados.nome}\n` +
+      `*E-mail:* ${dados.email}\n` +
+      `*Assunto:* ${dados.assunto}\n\n` +
+      dados.mensagem;
+
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(texto)}`,
+      '_blank',
+      'noopener'
+    );
+    definirStatus('Abri o WhatsApp com a mensagem pronta — é só clicar em enviar.', 'success');
+  }
+
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const dados = coletarDados();
+    if (dados) enviarPorEmail(dados);
   });
+
+  if (whatsappBtn) {
+    whatsappBtn.addEventListener('click', () => {
+      const dados = coletarDados();
+      if (dados) enviarPorWhatsApp(dados);
+    });
+  }
 }
 
 /* ==========================================================================
