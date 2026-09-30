@@ -17,7 +17,7 @@
   <link rel="canonical" href="https://portifolio-lucas-luz.vercel.app/projeto-igneo.html">
 
   <!-- Favicon -->
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
   <!-- Open Graph -->
@@ -27,12 +27,12 @@
   <meta property="og:url" content="https://portifolio-lucas-luz.vercel.app/projeto-igneo.html">
   <meta property="og:title" content="Ígneo — Estudo de caso | Lucas Luz">
   <meta property="og:description" content="Do desafio às decisões de design: como construí o site da agência criativa Ígneo.">
-  <meta property="og:image" content="https://portifolio-lucas-luz.vercel.app/assets/projects/igneo.png">
+  <meta property="og:image" content="https://portifolio-lucas-luz.vercel.app/assets/projects/igneo.jpg">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -42,14 +42,11 @@
 
   <!-- Navbar simplificada -->
   <header class="navbar navbar--case" id="navbar">
-    <nav class="navbar__container">
-      <a href="index.html" class="navbar__logo">Lucas<span>.</span>Luz</a>
+    <nav class="navbar__container" aria-label="Principal">
+      <a href="index.html" class="navbar__logo" aria-label="Lucas Luz — início"><img src="assets/logo.png" alt="" width="277" height="291"></a>
 
       <a href="index.html#projetos" class="case-back">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
-          <path d="M19 12H5"/>
-          <path d="m12 19-7-7 7-7"/>
-        </svg>
+        <span class="arrow" aria-hidden="true">←</span>
         Voltar aos projetos
       </a>
     </nav>
@@ -58,190 +55,203 @@
   <main class="case">
 
     <!-- Cabeçalho do estudo de caso -->
-    <header class="case__hero">
-      <div class="section__container">
-        <p class="section__tag fade-up">Estudo de caso</p>
-        <h1 class="case__title fade-up">Ígneo</h1>
-        <p class="case__lead fade-up">
-          Site institucional para um estúdio de branding que promete transformar ideias
-          em marcas inesquecíveis — e que, por isso mesmo, não podia ter a cara de
-          qualquer outra agência.
-        </p>
+    <header class="case__hero container">
+      <p class="eyebrow reveal"><span class="eyebrow__num">01</span><span class="eyebrow__rule"></span>Estudo de caso</p>
+      <h1 class="case__title">
+        <span class="mask"><span class="mask__line">Ígneo</span></span>
+      </h1>
+      <p class="case__lead reveal">
+        Site institucional para um estúdio de branding que promete transformar ideias
+        em marcas inesquecíveis — e que, por isso mesmo, não podia ter a cara de
+        qualquer outra agência.
+      </p>
 
-        <dl class="case__meta fade-up">
-          <div>
-            <dt>Meu papel</dt>
-            <dd>Design e desenvolvimento</dd>
-          </div>
-          <div>
-            <dt>Tipo</dt>
-            <dd>Site institucional <span class="case__note">(projeto demonstrativo)</span></dd>
-          </div>
-          <div>
-            <dt>Stack</dt>
-            <dd>HTML5, CSS3</dd>
-          </div>
-          <div>
-            <dt>Ano</dt>
-            <dd>2026 <span class="case__note">[CONFIRMAR]</span></dd>
-          </div>
-        </dl>
+      <dl class="case__meta reveal">
+        <div>
+          <dt>Meu papel</dt>
+          <dd>Design e desenvolvimento</dd>
+        </div>
+        <div>
+          <dt>Tipo</dt>
+          <dd>Site institucional <span class="case__note">(projeto demonstrativo)</span></dd>
+        </div>
+        <div>
+          <dt>Stack</dt>
+          <dd>HTML5, CSS3</dd>
+        </div>
+        <div>
+          <dt>Ano</dt>
+          <dd>2026 <span class="case__note">[CONFIRMAR]</span></dd>
+        </div>
+      </dl>
 
-        <a href="https://igneo-one.vercel.app/" class="btn btn--primary fade-up" target="_blank" rel="noopener">
-          Ver site no ar
+      <div class="case__hero-actions reveal">
+        <a href="https://igneo-one.vercel.app/" class="link-cta" target="_blank" rel="noopener">
+          Ver site no ar <span class="arrow" aria-hidden="true">↗</span>
         </a>
       </div>
     </header>
 
     <!-- Imagem principal -->
-    <figure class="case__shot fade-up">
-      <img src="assets/projects/igneo.png" alt="Página inicial do site Ígneo, com o título 'Transforme sua ideia em uma marca inesquecível' e o mascote em forma de chama" width="1200" height="750">
+    <figure class="case__shot container reveal">
+      <img src="assets/projects/igneo.jpg" alt="Capa do projeto Ígneo: página inicial do site nas versões desktop e celular, com o título 'Transforme sua ideia em uma marca inesquecível' e o mascote em forma de chama" width="1920" height="1200">
     </figure>
 
-    <div class="section__container case__body">
+    <div class="container case__body">
 
       <!-- 01. O desafio -->
-      <section class="case__block fade-up">
+      <section class="case__block reveal">
         <p class="case__index">01</p>
         <h2 class="case__heading">O desafio</h2>
-        <p>
-          Sites de agência criativa caem quase sempre na mesma fórmula: fundo escuro,
-          tipografia neutra, foto de equipe em open space e a palavra "inovação" em
-          algum lugar. O problema é evidente — um estúdio que vende diferenciação de
-          marca não pode se apresentar de um jeito indistinguível dos concorrentes.
-        </p>
-        <p>
-          O desafio aqui não era construir mais uma landing page bonita. Era fazer o
-          site <strong>provar a competência que ele anuncia</strong>: se a Ígneo diz que
-          cria marcas memoráveis, a primeira prova disso precisa ser a própria página.
-        </p>
+        <div class="case__content">
+          <p>
+            Sites de agência criativa caem quase sempre na mesma fórmula: fundo escuro,
+            tipografia neutra, foto de equipe em open space e a palavra "inovação" em
+            algum lugar. O problema é evidente — um estúdio que vende diferenciação de
+            marca não pode se apresentar de um jeito indistinguível dos concorrentes.
+          </p>
+          <p>
+            O desafio aqui não era construir mais uma landing page bonita. Era fazer o
+            site <strong>provar a competência que ele anuncia</strong>: se a Ígneo diz que
+            cria marcas memoráveis, a primeira prova disso precisa ser a própria página.
+          </p>
+        </div>
       </section>
 
       <!-- 02. O conceito -->
-      <section class="case__block fade-up">
+      <section class="case__block reveal">
         <p class="case__index">02</p>
         <h2 class="case__heading">O conceito: nascido do fogo</h2>
-        <p>
-          Parti do nome. "Ígneo" é o que nasce do fogo — e daí saiu toda a linguagem do
-          site, resumida na frase que virou o eixo do projeto:
-        </p>
-        <blockquote class="case__quote">
-          A gente não faz logo. Faz fogueira.
-        </blockquote>
-        <p>
-          Isso deu um critério objetivo para cada decisão seguinte: se um elemento não
-          transmitia calor, energia ou movimento, ele estava no site errado. Foi o que
-          definiu a paleta, o mascote e até o tom dos textos.
-        </p>
+        <div class="case__content">
+          <p>
+            Parti do nome. "Ígneo" é o que nasce do fogo — e daí saiu toda a linguagem do
+            site, resumida na frase que virou o eixo do projeto:
+          </p>
+          <blockquote class="case__quote">
+            A gente não faz logo. Faz fogueira.
+          </blockquote>
+          <p>
+            Isso deu um critério objetivo para cada decisão seguinte: se um elemento não
+            transmitia calor, energia ou movimento, ele estava no site errado. Foi o que
+            definiu a paleta, o mascote e até o tom dos textos.
+          </p>
+        </div>
       </section>
 
       <!-- 03. Decisões de design -->
-      <section class="case__block fade-up">
+      <section class="case__block reveal">
         <p class="case__index">03</p>
         <h2 class="case__heading">Decisões de design</h2>
+        <div class="case__content">
+          <div class="case__decision">
+            <h3>Fundo claro, contra a corrente</h3>
+            <p>
+              Quase toda agência aposta no dark mode. Escolhi um creme quente com azul-marinho
+              profundo e laranja incandescente no acento — a paleta puxa o conceito de fogo
+              sem cair no clichê, e o contraste alto garante leitura confortável em qualquer tela.
+            </p>
+          </div>
 
-        <div class="case__decision">
-          <h3>Fundo claro, contra a corrente</h3>
-          <p>
-            Quase toda agência aposta no dark mode. Escolhi um creme quente com azul-marinho
-            profundo e laranja incandescente no acento — a paleta puxa o conceito de fogo
-            sem cair no clichê, e o contraste alto garante leitura confortável em qualquer tela.
-          </p>
-        </div>
+          <div class="case__decision">
+            <h3>Um mascote em vez de foto de banco de imagens</h3>
+            <p>
+              A chama ilustrada é o elemento mais arriscado e o mais rentável do projeto.
+              Foto de equipe genérica não gera lembrança; um personagem próprio, sim. Ele dá
+              à Ígneo um ativo visual reutilizável em redes sociais e apresentações — exatamente
+              o tipo de entrega que a agência vende.
+            </p>
+          </div>
 
-        <div class="case__decision">
-          <h3>Um mascote em vez de foto de banco de imagens</h3>
-          <p>
-            A chama ilustrada é o elemento mais arriscado e o mais rentável do projeto.
-            Foto de equipe genérica não gera lembrança; um personagem próprio, sim. Ele dá
-            à Ígneo um ativo visual reutilizável em redes sociais e apresentações — exatamente
-            o tipo de entrega que a agência vende.
-          </p>
-        </div>
+          <div class="case__decision">
+            <h3>Estrutura editorial numerada</h3>
+            <p>
+              As seções são marcadas como <em>01 — Sobre</em>, <em>02 — Serviços</em>,
+              <em>03 — Por que a Ígneo</em>, e assim por diante. Isso transforma a rolagem
+              em uma narrativa com começo, meio e fim, em vez de blocos empilhados sem
+              hierarquia. O visitante sempre sabe onde está.
+            </p>
+          </div>
 
-        <div class="case__decision">
-          <h3>Estrutura editorial numerada</h3>
-          <p>
-            As seções são marcadas como <em>01 — Sobre</em>, <em>02 — Serviços</em>,
-            <em>03 — Por que a Ígneo</em>, e assim por diante. Isso transforma a rolagem
-            em uma narrativa com começo, meio e fim, em vez de blocos empilhados sem
-            hierarquia. O visitante sempre sabe onde está.
-          </p>
-        </div>
+          <div class="case__decision">
+            <h3>Números no lugar de adjetivos</h3>
+            <p>
+              Em vez de "somos experientes", o site mostra 120+ marcas criadas, 9,7 milhões
+              de pessoas alcançadas, 98% de aprovação na primeira proposta e +64% de conversão
+              mediana. Dado concreto convence; adjetivo, não.
+            </p>
+          </div>
 
-        <div class="case__decision">
-          <h3>Números no lugar de adjetivos</h3>
-          <p>
-            Em vez de "somos experientes", o site mostra 120+ marcas criadas, 9,7 milhões
-            de pessoas alcançadas, 98% de aprovação na primeira proposta e +64% de conversão
-            mediana. Dado concreto convence; adjetivo, não.
-          </p>
-        </div>
-
-        <div class="case__decision">
-          <h3>Tipografia como identidade</h3>
-          <p>
-            Archivo em peso e largura variáveis nos títulos, Plus Jakarta Sans no texto
-            corrido. Os títulos ocupam a tela em caixa alta e peso alto — a tipografia
-            carrega a personalidade da marca, o que dispensa ornamentos e mantém a página leve.
-          </p>
+          <div class="case__decision">
+            <h3>Tipografia como identidade</h3>
+            <p>
+              Archivo em peso e largura variáveis nos títulos, Plus Jakarta Sans no texto
+              corrido. Os títulos ocupam a tela em caixa alta e peso alto — a tipografia
+              carrega a personalidade da marca, o que dispensa ornamentos e mantém a página leve.
+            </p>
+          </div>
         </div>
       </section>
 
       <!-- 04. Construção -->
-      <section class="case__block fade-up">
+      <section class="case__block reveal">
         <p class="case__index">04</p>
         <h2 class="case__heading">A construção</h2>
-        <p>
-          O site é <strong>HTML e CSS puros, sem uma linha de JavaScript</strong>. Não foi
-          limitação, foi escolha: tudo que o projeto pedia — layout responsivo, seções
-          ancoradas, estados de hover — o CSS moderno resolve sozinho com Grid, Flexbox,
-          propriedades customizadas e rolagem suave nativa.
-        </p>
-        <p>
-          O resultado é uma página que carrega praticamente instantânea, funciona mesmo se
-          algum script falhar e não tem dependência nenhuma para manter. Para um site
-          institucional, adicionar um framework aqui seria custo sem retorno.
-        </p>
+        <div class="case__content">
+          <p>
+            O site é <strong>HTML e CSS puros, sem uma linha de JavaScript</strong>. Não foi
+            limitação, foi escolha: tudo que o projeto pedia — layout responsivo, seções
+            ancoradas, estados de hover — o CSS moderno resolve sozinho com Grid, Flexbox,
+            propriedades customizadas e rolagem suave nativa.
+          </p>
+          <p>
+            O resultado é uma página que carrega praticamente instantânea, funciona mesmo se
+            algum script falhar e não tem dependência nenhuma para manter. Para um site
+            institucional, adicionar um framework aqui seria custo sem retorno.
+          </p>
+        </div>
       </section>
 
       <!-- 05. Resultado -->
-      <section class="case__block fade-up">
+      <section class="case__block reveal">
         <p class="case__index">05</p>
         <h2 class="case__heading">Resultado</h2>
-        <p>
-          O site entrega uma identidade que ninguém confunde com a de outra agência, e faz
-          isso com a stack mais simples possível. As seis frentes de serviço ficam claras
-          logo na primeira rolagem, os números sustentam a promessa e o mascote dá à marca
-          um rosto que sobrevive fora do site.
-        </p>
-        <p class="case__closing">
-          O que levo deste projeto: quando o conceito é forte e definido cedo, ele vira
-          um filtro que responde sozinho as decisões de design — e o resultado sai coerente
-          sem precisar de esforço extra no final.
-        </p>
+        <div class="case__content">
+          <p>
+            O site entrega uma identidade que ninguém confunde com a de outra agência, e faz
+            isso com a stack mais simples possível. As seis frentes de serviço ficam claras
+            logo na primeira rolagem, os números sustentam a promessa e o mascote dá à marca
+            um rosto que sobrevive fora do site.
+          </p>
+          <p class="case__closing">
+            O que levo deste projeto: quando o conceito é forte e definido cedo, ele vira
+            um filtro que responde sozinho as decisões de design — e o resultado sai coerente
+            sem precisar de esforço extra no final.
+          </p>
+        </div>
       </section>
 
       <!-- Navegação final -->
-      <div class="case__cta fade-up">
-        <a href="https://igneo-one.vercel.app/" class="btn btn--primary" target="_blank" rel="noopener">
-          Ver o site no ar
+      <div class="case__cta reveal">
+        <a href="https://igneo-one.vercel.app/" class="link-cta" target="_blank" rel="noopener">
+          Ver o site no ar <span class="arrow" aria-hidden="true">↗</span>
         </a>
-        <a href="index.html#projetos" class="btn btn--outline">Ver outros projetos</a>
+        <a href="index.html#projetos" class="link-cta link-cta--quiet">Ver outros projetos <span class="arrow" aria-hidden="true">→</span></a>
       </div>
 
     </div>
   </main>
 
   <footer class="footer">
-    <p class="footer__text">
-      Lucas Luz &copy; <span id="currentYear"></span> — Desenvolvido por Lucas Luz.
-    </p>
+    <div class="container footer__inner">
+      <p class="footer__text">Lucas Luz &copy; <span id="currentYear"></span> — Desenvolvido por Lucas Luz.</p>
+      <p class="footer__text footer__motto">Ideias <i>/</i> Código <i>/</i> Resultados</p>
+      <p class="footer__text"><span id="localTime">Brasil</span></p>
+    </div>
   </footer>
 
   <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
-      <path d="m18 15-6-6-6 6"/>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true">
+      <path d="M12 19V5"/><path d="m6 11 6-6 6 6"/>
     </svg>
   </button>
 

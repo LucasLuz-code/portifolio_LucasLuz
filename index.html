@@ -10,7 +10,7 @@
   <link rel="canonical" href="https://portifolio-lucas-luz.vercel.app/">
 
   <!-- Favicon -->
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
   <!-- Open Graph (WhatsApp, LinkedIn, Facebook) -->
@@ -31,10 +31,10 @@
   <meta name="twitter:description" content="Transformo ideias em experiências digitais modernas, rápidas e intuitivas. Veja meus projetos.">
   <meta name="twitter:image" content="https://portifolio-lucas-luz.vercel.app/assets/og-image.png">
 
-  <!-- Fonts -->
+  <!-- Fonts: Helvetica Neue se instalada, senão Inter (texto e títulos) + JetBrains Mono (números e índices) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -45,8 +45,8 @@
 
   <!-- Navbar -->
   <header class="navbar" id="navbar">
-    <nav class="navbar__container">
-      <a href="#hero" class="navbar__logo">Lucas<span>.</span>Luz</a>
+    <nav class="navbar__container" aria-label="Principal">
+      <a href="#hero" class="navbar__logo" aria-label="Lucas Luz — início"><img src="assets/logo.png" alt="" width="277" height="291"></a>
 
       <ul class="navbar__links" id="navLinks">
         <li><a href="#hero" class="navbar__link active" data-link="hero">Início</a></li>
@@ -55,8 +55,9 @@
         <li><a href="#contato" class="navbar__link" data-link="contato">Contato</a></li>
       </ul>
 
-      <button class="navbar__toggle" id="navToggle" aria-label="Abrir menu">
-        <span></span>
+      <p class="navbar__motto" aria-hidden="true">Ideias <i>/</i> Código <i>/</i> Resultados</p>
+
+      <button class="navbar__toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
         <span></span>
         <span></span>
       </button>
@@ -64,243 +65,273 @@
   </header>
 
   <main>
-    <!-- Hero Section -->
+    <!-- ============================== HERO ============================== -->
     <section class="hero" id="hero">
-      <div class="hero__grid-bg"></div>
-      <div class="hero__glow"></div>
-      <div class="hero__shape hero__shape--1"></div>
-      <div class="hero__shape hero__shape--2"></div>
+      <!-- Retrato principal: PNG recortado (fundo transparente) em assets/fotos/retrato.png -->
+      <figure class="hero__portrait">
+        <img src="assets/fotos/retrato.png" alt="Retrato de Lucas Luz" width="610" height="653" fetchpriority="high">
+      </figure>
 
-      <div class="hero__content">
-        <p class="hero__greeting fade-in">Olá, eu sou</p>
-        <h1 class="hero__title fade-in">
-          <span id="typedName"></span><span class="hero__cursor">|</span>
+      <div class="hero__inner container">
+        <p class="eyebrow reveal"><span class="eyebrow__num">01</span><span class="eyebrow__rule"></span>Desenvolvedor Web</p>
+
+        <h1 class="hero__title">
+          <span class="mask"><span class="mask__line">Lucas</span></span>
+          <span class="mask"><span class="mask__line hero__title--mute">Luz</span></span>
         </h1>
-        <h2 class="hero__subtitle fade-in">Desenvolvedor Front-end & Web Designer</h2>
-        <p class="hero__phrase fade-in">
-          Transformo ideias em experiências digitais modernas, rápidas e intuitivas.
+
+        <p class="hero__lead reveal">
+          Desenvolvedor web em constante evolução, transformando ideias em projetos
+          reais com foco em performance, design e experiência.
         </p>
-        <div class="hero__actions fade-in">
-          <a href="#projetos" class="btn btn--primary">Ver Projetos</a>
-          <a href="#contato" class="btn btn--outline">Entrar em Contato</a>
-          <a href="assets/curriculo-lucas-luz.pdf" class="btn btn--ghost" download>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="17" height="17" aria-hidden="true">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <path d="M7 10l5 5 5-5"/>
-              <path d="M12 15V3"/>
-            </svg>
-            Baixar Currículo
+
+        <div class="hero__actions reveal">
+          <a href="#projetos" class="link-cta">Ver projetos <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+
+      <ul class="hero__specs reveal" aria-label="Especialidades">
+        <li>Frontend</li>
+        <li>Backend</li>
+        <li>UI/UX</li>
+      </ul>
+
+      <div class="hero__foot container">
+        <div class="socials reveal">
+          <a href="https://github.com/LucasLuz-code" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.06.74.8 1.18 1.83 1.18 3.09 0 4.43-2.69 5.4-5.26 5.69.41.36.78 1.06.78 2.15 0 1.55-.01 2.8-.01 3.18 0 .31.21.67.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+          </a>
+          <!-- TODO: trocar SEU-PERFIL pela URL real do LinkedIn. -->
+          <a href="https://www.linkedin.com/in/SEU-PERFIL/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" width="18" height="18" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/luz.programador/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg>
           </a>
         </div>
-      </div>
 
-      <a href="#sobre" class="hero__scroll-indicator" aria-label="Rolar para baixo">
-        <span></span>
-      </a>
+        <a href="#sobre" class="hero__scroll reveal">
+          <span class="hero__scroll-rule" aria-hidden="true"></span>
+          <span>Sempre um<br>passo à frente</span>
+        </a>
+      </div>
     </section>
 
-    <!-- Sobre Mim -->
-    <section class="about" id="sobre">
-      <div class="section__container">
-        <p class="section__tag fade-up">Sobre Mim</p>
-        <h2 class="section__title fade-up">Design e código, lado a lado.</h2>
+    <!-- ============================== SOBRE ============================== -->
+    <section class="about section" id="sobre">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="section-head__num">02</span>
+          <span class="section-head__label">Sobre</span>
+          <span class="section-head__rule" aria-hidden="true"></span>
+          <span class="section-head__meta">Perfil profissional</span>
+        </header>
 
         <div class="about__grid">
-          <div class="about__photo fade-up">
-            <img src="assets/perfil.jpg" alt="Foto de Lucas Luz" width="900" height="900" loading="lazy">
-          </div>
+          <h2 class="about__title display">
+            <span class="mask"><span class="mask__line">Design e código,</span></span>
+            <span class="mask"><span class="mask__line text-mute">lado a lado.</span></span>
+          </h2>
 
-          <div class="about__text fade-up">
-            <p>
+          <!-- Foto secundária: assets/fotos/colorida.jpeg (exibida em P&B) -->
+          <figure class="about__photo reveal">
+            <img src="assets/fotos/colorida.jpeg" alt="Foto de Lucas Luz" width="960" height="1280" loading="lazy">
+            <figcaption><span>Fig. 02</span><span>Lucas Luz</span></figcaption>
+          </figure>
+
+          <div class="about__text">
+            <p class="about__intro reveal">
               Sou um desenvolvedor Front-end e Web Designer apaixonado por transformar
-              ideias em interfaces modernas, funcionais e memoráveis. Cada projeto é
-              uma oportunidade de unir estética e performance, criando experiências
-              digitais que realmente conectam pessoas e marcas.
+              ideias em interfaces modernas, funcionais e memoráveis.
             </p>
-            <p>
-              Estou constantemente aprendendo novas tecnologias e explorando
-              tendências de UI/UX para entregar soluções que não apenas funcionam bem,
-              mas que também impressionam visualmente. Acredito que um bom design
-              começa com a atenção aos detalhes e termina com um código limpo e
-              bem estruturado.
-            </p>
+            <div class="about__cols">
+              <p class="reveal">
+                Cada projeto é uma oportunidade de unir estética e performance, criando
+                experiências digitais que realmente conectam pessoas e marcas.
+              </p>
+              <p class="reveal">
+                Estou constantemente aprendendo novas tecnologias e explorando tendências
+                de UI/UX. Acredito que um bom design começa com a atenção aos detalhes e
+                termina com um código limpo e bem estruturado.
+              </p>
+            </div>
 
-            <a href="assets/curriculo-lucas-luz.pdf" class="btn btn--outline about__cv" download>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="17" height="17" aria-hidden="true">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <path d="M7 10l5 5 5-5"/>
-                <path d="M12 15V3"/>
-              </svg>
-              Baixar Currículo (PDF)
-            </a>
+            <dl class="stats reveal">
+              <div class="stats__item">
+                <dt>Projetos publicados</dt>
+                <dd>05</dd>
+              </div>
+              <div class="stats__item">
+                <dt>Segmentos atendidos</dt>
+                <dd>03</dd>
+              </div>
+              <div class="stats__item">
+                <dt>Disciplinas</dt>
+                <dd>03</dd>
+              </div>
+            </dl>
           </div>
         </div>
 
-        <div class="about__skills fade-up">
-          <h3 class="about__skills-title">Principais Habilidades</h3>
-          <ul class="skills-list">
-            <li class="skills-list__item">
-              <span class="skills-list__dot"></span>HTML5
-            </li>
-            <li class="skills-list__item">
-              <span class="skills-list__dot"></span>CSS3
-            </li>
-            <li class="skills-list__item">
-              <span class="skills-list__dot"></span>JavaScript (ES6+)
-            </li>
-            <li class="skills-list__item">
-              <span class="skills-list__dot"></span>Design Responsivo
-            </li>
-            <li class="skills-list__item">
-              <span class="skills-list__dot"></span>UI/UX Design
-            </li>
-            <li class="skills-list__item">
-              <span class="skills-list__dot"></span>Git & GitHub
-            </li>
-          </ul>
+        <div class="skills">
+          <div class="skills__group reveal">
+            <h3 class="skills__title"><span>(A)</span> Front-end</h3>
+            <ul class="skills__list">
+              <li><span>01</span>HTML5</li>
+              <li><span>02</span>CSS3</li>
+              <li><span>03</span>JavaScript (ES6+)</li>
+              <li><span>04</span>React</li>
+            </ul>
+          </div>
+          <div class="skills__group reveal">
+            <h3 class="skills__title"><span>(B)</span> Back-end &amp; dados</h3>
+            <ul class="skills__list">
+              <li><span>05</span>Python</li>
+              <li><span>06</span>Django</li>
+              <li><span>07</span>SQL</li>
+            </ul>
+          </div>
+          <div class="skills__group reveal">
+            <h3 class="skills__title"><span>(C)</span> Design</h3>
+            <ul class="skills__list">
+              <li><span>08</span>UI/UX Design</li>
+              <li><span>09</span>Design Responsivo</li>
+            </ul>
+          </div>
+          <div class="skills__group reveal">
+            <h3 class="skills__title"><span>(D)</span> Fundamentos</h3>
+            <ul class="skills__list">
+              <li><span>10</span>Git &amp; GitHub</li>
+              <li><span>11</span>Conceitos de internet</li>
+              <li><span>12</span>Inteligência Artificial</li>
+            </ul>
+          </div>
+          <div class="skills__group skills__group--cta reveal">
+            <p>Formação, experiência e contatos em um só documento.</p>
+            <a href="assets/curriculo-lucas-luz.pdf" class="link-cta" download>Baixar currículo (PDF) <span class="arrow arrow--down" aria-hidden="true">↓</span></a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Projetos -->
-    <section class="projects" id="projetos">
-      <div class="section__container">
-        <p class="section__tag fade-up">Projetos</p>
-        <h2 class="section__title fade-up">Trabalhos selecionados</h2>
-        <p class="section__subtitle fade-up">
-          Uma seleção de projetos que refletem meu cuidado com design, código e experiência do usuário.
-        </p>
+    <!-- ============================== PROJETOS ============================== -->
+    <section class="projects section" id="projetos">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="section-head__num">03</span>
+          <span class="section-head__label">Projetos</span>
+          <span class="section-head__rule" aria-hidden="true"></span>
+          <span class="section-head__meta">2026 — Seleção</span>
+        </header>
 
-        <div class="projects__grid">
+        <div class="projects__intro">
+          <h2 class="display">
+            <span class="mask"><span class="mask__line">Trabalhos</span></span>
+            <span class="mask"><span class="mask__line text-mute">selecionados<sup class="projects__count">(05)</sup></span></span>
+          </h2>
+          <p class="projects__subtitle reveal">
+            Uma seleção de projetos que refletem meu cuidado com design, código e experiência do usuário.
+          </p>
+        </div>
 
-          <article class="project-card fade-up">
-            <div class="project-card__image">
-              <img src="assets/projects/igneo.png" alt="Captura de tela do site Ígneo" loading="lazy">
+        <div class="works">
+
+          <!-- 01 · destaque: capa em largura total -->
+          <article class="work work--feature">
+            <a href="https://brasa22-demonstracao.vercel.app/" target="_blank" rel="noopener" class="work__media reveal" style="--ratio: 16 / 10;" aria-label="Abrir o site Brasa 22">
+              <img src="assets/projects/brasa22.jpg" alt="Capa do projeto Brasa 22: site da hamburgueria nas versões desktop e celular" width="1920" height="1200" loading="lazy">
+              <span class="work__peek">Ver projeto ↗</span>
+            </a>
+            <div class="work__info reveal">
+              <p class="work__meta"><span class="work__num">01</span>Hamburgueria · Cardápio digital</p>
+              <h3 class="work__title">Brasa 22</h3>
+              <p class="work__desc">
+                Site para hamburgueria artesanal com cardápio digital, carrinho e pedidos enviados pelo WhatsApp para entrega ou retirada.
+              </p>
+              <ul class="work__tags"><li>HTML5</li><li>CSS3</li><li>JavaScript</li></ul>
+              <div class="work__links">
+                <a href="https://brasa22-demonstracao.vercel.app/" target="_blank" rel="noopener" class="link-cta">Ver projeto <span class="arrow" aria-hidden="true">↗</span></a>
+              </div>
             </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">Ígneo</h3>
-              <p class="project-card__desc">
+          </article>
+
+          <!-- 02 · layout amplo, imagem à esquerda -->
+          <article class="work work--wide">
+            <a href="projeto-igneo.html" class="work__media reveal" style="--ratio: 16 / 10;" aria-label="Abrir estudo de caso do Ígneo">
+              <img src="assets/projects/igneo.jpg" alt="Capa do projeto site Ígneo" width="1920" height="1200" loading="lazy">
+              <span class="work__peek">Estudo de caso ↗</span>
+            </a>
+            <div class="work__info reveal">
+              <p class="work__meta"><span class="work__num">02</span>Branding · Site institucional</p>
+              <h3 class="work__title">Ígneo</h3>
+              <p class="work__desc">
                 Site institucional demonstrativo para agência criativa de branding e design, com serviços, portfólio e processo de trabalho.
               </p>
-              <div class="project-card__tags">
-                <span>HTML5</span>
-                <span>CSS3</span>
-                <span>UI/UX Design</span>
-              </div>
-              <div class="project-card__actions">
-                <a href="https://igneo-one.vercel.app/" class="btn btn--small btn--primary" target="_blank" rel="noopener">Ver Projeto</a>
-                <a href="projeto-igneo.html" class="project-card__case">
-                  Estudo de caso
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true">
-                    <path d="M5 12h14"/>
-                    <path d="m12 5 7 7-7 7"/>
-                  </svg>
-                </a>
+              <ul class="work__tags"><li>HTML5</li><li>CSS3</li><li>UI/UX Design</li></ul>
+              <div class="work__links">
+                <a href="https://igneo-one.vercel.app/" target="_blank" rel="noopener" class="link-cta">Ver projeto <span class="arrow" aria-hidden="true">↗</span></a>
+                <a href="projeto-igneo.html" class="link-cta link-cta--quiet">Estudo de caso <span class="arrow" aria-hidden="true">→</span></a>
               </div>
             </div>
           </article>
 
-          <article class="project-card fade-up">
-            <div class="project-card__image">
-              <img src="assets/projects/calorics.png" alt="Captura de tela do app Calorics" loading="lazy">
-            </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">Calorics</h3>
-              <p class="project-card__desc">
-                Aplicativo para controle de calorias diárias, com registro de refeições e acompanhamento de metas nutricionais.
-              </p>
-              <div class="project-card__tags">
-                <span>HTML5</span>
-                <span>CSS3</span>
-                <span>JavaScript</span>
+          <!-- 03 + 04 · par assimétrico -->
+          <div class="works__pair">
+            <article class="work work--tall">
+              <a href="https://calorics-hj6c.vercel.app/" target="_blank" rel="noopener" class="work__media reveal" style="--ratio: 16 / 10;" aria-label="Abrir o Calorics">
+                <img src="assets/projects/calorics.jpg" alt="Capa do projeto app Calorics" width="1920" height="1200" loading="lazy">
+                <span class="work__peek">Ver projeto ↗</span>
+              </a>
+              <div class="work__info reveal">
+                <p class="work__meta"><span class="work__num">03</span>Aplicativo web · Saúde</p>
+                <h3 class="work__title">Calorics</h3>
+                <p class="work__desc">
+                  Aplicativo para controle de calorias diárias, com registro de refeições e acompanhamento de metas nutricionais.
+                </p>
+                <ul class="work__tags"><li>HTML5</li><li>CSS3</li><li>JavaScript</li></ul>
+                <div class="work__links">
+                  <a href="https://calorics-hj6c.vercel.app/" target="_blank" rel="noopener" class="link-cta">Ver projeto <span class="arrow" aria-hidden="true">↗</span></a>
+                  <a href="https://github.com/LucasLuz-code/calorics" target="_blank" rel="noopener" class="link-cta link-cta--quiet">GitHub <span class="arrow" aria-hidden="true">↗</span></a>
+                </div>
               </div>
-              <div class="project-card__actions">
-                <a href="https://calorics-hj6c-eeiv5nzaa-lucasluz-codes-projects.vercel.app/" class="btn btn--small btn--primary" target="_blank" rel="noopener">Ver Projeto</a>
-                <a href="https://github.com/LucasLuz-code/calorics" class="btn btn--small btn--outline" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
-          </article>
+            </article>
 
-          <article class="project-card fade-up">
-            <div class="project-card__image">
-              <img src="assets/projects/nexus.png" alt="Captura de tela do site Nexus Marketing" loading="lazy">
-            </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">Nexus Marketing</h3>
-              <p class="project-card__desc">
-                Site institucional demonstrativo para agência de marketing digital, com serviços, portfólio, depoimentos e FAQ.
-              </p>
-              <div class="project-card__tags">
-                <span>HTML5</span>
-                <span>CSS3</span>
-                <span>JavaScript</span>
+            <article class="work work--offset">
+              <a href="https://agenciademarkenting.vercel.app/" target="_blank" rel="noopener" class="work__media reveal" style="--ratio: 16 / 10;" aria-label="Abrir o site Nexus Marketing">
+                <img src="assets/projects/nexus.jpg" alt="Capa do projeto site Nexus Marketing" width="1920" height="1200" loading="lazy">
+                <span class="work__peek">Ver projeto ↗</span>
+              </a>
+              <div class="work__info reveal">
+                <p class="work__meta"><span class="work__num">04</span>Marketing digital · Site institucional</p>
+                <h3 class="work__title">Nexus Marketing</h3>
+                <p class="work__desc">
+                  Site institucional demonstrativo para agência de marketing digital, com serviços, portfólio, depoimentos e FAQ.
+                </p>
+                <ul class="work__tags"><li>HTML5</li><li>CSS3</li><li>JavaScript</li></ul>
+                <div class="work__links">
+                  <a href="https://agenciademarkenting.vercel.app/" target="_blank" rel="noopener" class="link-cta">Ver projeto <span class="arrow" aria-hidden="true">↗</span></a>
+                  <a href="https://github.com/LucasLuz-code/agenciademarkenting" target="_blank" rel="noopener" class="link-cta link-cta--quiet">GitHub <span class="arrow" aria-hidden="true">↗</span></a>
+                </div>
               </div>
-              <div class="project-card__actions">
-                <a href="https://agenciademarkenting.vercel.app/" class="btn btn--small btn--primary" target="_blank" rel="noopener">Ver Projeto</a>
-                <a href="https://github.com/LucasLuz-code/agenciademarkenting" class="btn btn--small btn--outline" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
-          </article>
+            </article>
+          </div>
 
-          <article class="project-card fade-up">
-            <div class="project-card__image">
-              <img src="assets/projects/barbearia-vitorino.png" alt="Captura de tela do site Barbearia Vitorino" loading="lazy">
-            </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">Barbearia Vitorino</h3>
-              <p class="project-card__desc">
-                Site demonstrativo para barbearia com sistema de agendamento online: escolha de barbeiro, serviço e horário.
-              </p>
-              <div class="project-card__tags">
-                <span>HTML5</span>
-                <span>CSS3</span>
-                <span>JavaScript</span>
-              </div>
-              <div class="project-card__actions">
-                <a href="https://barbearia-rho-black.vercel.app/" class="btn btn--small btn--primary" target="_blank" rel="noopener">Ver Projeto</a>
-                <a href="https://github.com/LucasLuz-code/barbearia" class="btn btn--small btn--outline" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card fade-up">
-            <div class="project-card__image">
-              <img src="assets/projects/black-crown-barber.png" alt="Captura de tela do site Black Crown Barber" loading="lazy">
-            </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">Black Crown Barber</h3>
-              <p class="project-card__desc">
-                Site institucional demonstrativo para barbearia, com serviços, equipe, galeria e depoimentos de clientes.
-              </p>
-              <div class="project-card__tags">
-                <span>HTML5</span>
-                <span>CSS3</span>
-                <span>JavaScript</span>
-              </div>
-              <div class="project-card__actions">
-                <a href="https://academia-nine-inky.vercel.app/" class="btn btn--small btn--primary" target="_blank" rel="noopener">Ver Projeto</a>
-                <a href="https://github.com/LucasLuz-code/academia" class="btn btn--small btn--outline" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card fade-up">
-            <div class="project-card__image">
-              <img src="assets/projects/braseiro.png" alt="Captura de tela do sistema Braseiro" loading="lazy">
-            </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">Braseiro</h3>
-              <p class="project-card__desc">
+          <!-- 05 · layout amplo espelhado -->
+          <article class="work work--wide work--reverse">
+            <a href="https://restaurante-indol-five.vercel.app/" target="_blank" rel="noopener" class="work__media reveal" style="--ratio: 16 / 10;" aria-label="Abrir o sistema Braseiro">
+              <img src="assets/projects/braseiro.jpg" alt="Capa do projeto sistema Braseiro" width="1920" height="1200" loading="lazy">
+              <span class="work__peek">Ver projeto ↗</span>
+            </a>
+            <div class="work__info reveal">
+              <p class="work__meta"><span class="work__num">05</span>Sistema de gestão · Restaurante</p>
+              <h3 class="work__title">Braseiro</h3>
+              <p class="work__desc">
                 Sistema de gestão para restaurante com controle de mesas em tempo real, cardápio, painel de cozinha e caixa.
               </p>
-              <div class="project-card__tags">
-                <span>HTML5</span>
-                <span>CSS3</span>
-                <span>JavaScript</span>
-              </div>
-              <div class="project-card__actions">
-                <a href="https://restaurante-indol-five.vercel.app/" class="btn btn--small btn--primary" target="_blank" rel="noopener">Ver Projeto</a>
-                <a href="https://github.com/LucasLuz-code/restaurante" class="btn btn--small btn--outline" target="_blank" rel="noopener">GitHub</a>
+              <ul class="work__tags"><li>HTML5</li><li>CSS3</li><li>JavaScript</li></ul>
+              <div class="work__links">
+                <a href="https://restaurante-indol-five.vercel.app/" target="_blank" rel="noopener" class="link-cta">Ver projeto <span class="arrow" aria-hidden="true">↗</span></a>
+                <a href="https://github.com/LucasLuz-code/restaurante" target="_blank" rel="noopener" class="link-cta link-cta--quiet">GitHub <span class="arrow" aria-hidden="true">↗</span></a>
               </div>
             </div>
           </article>
@@ -309,98 +340,83 @@
       </div>
     </section>
 
-    <!-- Contato -->
-    <section class="contact" id="contato">
-      <div class="section__container">
-        <p class="section__tag fade-up">Contato</p>
-        <h2 class="section__title fade-up">Vamos criar algo incrível juntos?</h2>
-        <p class="contact__text fade-up">
-          Estou disponível para novos projetos e oportunidades. Envie uma mensagem
-          e vamos conversar sobre como posso ajudar a transformar sua ideia em realidade.
-        </p>
+    <!-- ============================== CONTATO ============================== -->
+    <section class="contact section is-light" id="contato">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="section-head__num">04</span>
+          <span class="section-head__label">Contato</span>
+          <span class="section-head__rule" aria-hidden="true"></span>
+          <span class="section-head__meta"><span class="status-dot" aria-hidden="true"></span>Disponível para novos projetos</span>
+        </header>
+
+        <h2 class="contact__title display">
+          <span class="mask"><span class="mask__line">Vamos criar algo</span></span>
+          <span class="mask"><span class="mask__line text-mute">incrível juntos?</span></span>
+        </h2>
 
         <div class="contact__grid">
+          <aside class="contact__aside">
+            <p class="contact__text reveal">
+              Estou disponível para novos projetos e oportunidades. Envie uma mensagem
+              e vamos conversar sobre como posso ajudar a transformar sua ideia em realidade.
+            </p>
+
+            <dl class="contact__channels reveal">
+              <div>
+                <dt>WhatsApp — resposta mais rápida</dt>
+                <dd><a href="https://wa.me/5517981276715" target="_blank" rel="noopener" class="contact__big-link">Conversar no WhatsApp <span class="arrow" aria-hidden="true">↗</span></a></dd>
+              </div>
+              <div>
+                <dt>E-mail</dt>
+                <dd><a href="mailto:euprogramador484@gmail.com" class="contact__big-link">euprogramador484@gmail.com</a></dd>
+              </div>
+              <div>
+                <dt>Código</dt>
+                <dd><a href="https://github.com/LucasLuz-code" target="_blank" rel="noopener" class="contact__big-link">github.com/LucasLuz-code <span class="arrow" aria-hidden="true">↗</span></a></dd>
+              </div>
+            </dl>
+          </aside>
+
           <!-- Sem backend: o formulário valida os campos e monta a mensagem,
                depois abre o e-mail ou o WhatsApp já preenchido. -->
-          <form class="contact__form fade-up" id="contactForm" novalidate>
+          <form class="contact__form reveal" id="contactForm" novalidate>
             <div class="form-row">
               <div class="form-field">
-                <label for="nome">Nome</label>
+                <label for="nome"><span>01</span>Nome</label>
                 <input type="text" id="nome" name="nome" placeholder="Seu nome" autocomplete="name" required>
                 <span class="form-error" data-error-for="nome"></span>
               </div>
 
               <div class="form-field">
-                <label for="email">E-mail</label>
+                <label for="email"><span>02</span>E-mail</label>
                 <input type="email" id="email" name="email" placeholder="voce@email.com" autocomplete="email" required>
                 <span class="form-error" data-error-for="email"></span>
               </div>
             </div>
 
             <div class="form-field">
-              <label for="assunto">Assunto <span class="form-optional">(opcional)</span></label>
+              <label for="assunto"><span>03</span>Assunto <em class="form-optional">(opcional)</em></label>
               <input type="text" id="assunto" name="assunto" placeholder="Sobre o que quer falar?">
             </div>
 
             <div class="form-field">
-              <label for="mensagem">Mensagem</label>
-              <textarea id="mensagem" name="mensagem" rows="5" placeholder="Conte um pouco sobre o seu projeto..." required></textarea>
+              <label for="mensagem"><span>04</span>Mensagem</label>
+              <textarea id="mensagem" name="mensagem" rows="4" placeholder="Conte um pouco sobre o seu projeto..." required></textarea>
               <span class="form-error" data-error-for="mensagem"></span>
             </div>
 
             <div class="contact__actions">
-              <button type="submit" class="btn btn--primary contact__submit">
-                Enviar por e-mail
+              <button type="submit" class="btn btn--solid">
+                Enviar por e-mail <span class="arrow" aria-hidden="true">→</span>
               </button>
-              <button type="button" class="btn btn--outline contact__submit" id="whatsappBtn">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
-                  <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35ZM12.04 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.38 9.38 0 0 1-1.44-5.01c0-5.19 4.23-9.41 9.43-9.41a9.36 9.36 0 0 1 6.66 2.76 9.32 9.32 0 0 1 2.76 6.66c0 5.19-4.23 9.42-9.42 9.42ZM20.05 3.95A11.28 11.28 0 0 0 12.04.63C5.83.63.78 5.68.78 11.88c0 1.98.52 3.92 1.5 5.63L.69 23.37l6-1.57a11.25 11.25 0 0 0 5.35 1.36h.01c6.2 0 11.25-5.05 11.25-11.25 0-3.01-1.17-5.83-3.25-7.96Z"/>
-                </svg>
-                Enviar pelo WhatsApp
+              <button type="button" class="btn btn--line" id="whatsappBtn">
+                Enviar pelo WhatsApp <span class="arrow" aria-hidden="true">↗</span>
               </button>
             </div>
 
             <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
           </form>
-
-          <aside class="contact__aside fade-up">
-            <h3 class="contact__aside-title">Prefere falar direto?</h3>
-            <p class="contact__aside-text">
-              Respondo mais rápido pelo WhatsApp. Se preferir, também dá para me
-              chamar por e-mail.
-            </p>
-
-            <a
-              href="https://wa.me/5517981276715"
-              class="btn btn--primary contact__whatsapp"
-              target="_blank"
-              rel="noopener"
-            >
-              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
-                <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35ZM12.04 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.38 9.38 0 0 1-1.44-5.01c0-5.19 4.23-9.41 9.43-9.41a9.36 9.36 0 0 1 6.66 2.76 9.32 9.32 0 0 1 2.76 6.66c0 5.19-4.23 9.42-9.42 9.42ZM20.05 3.95A11.28 11.28 0 0 0 12.04.63C5.83.63.78 5.68.78 11.88c0 1.98.52 3.92 1.5 5.63L.69 23.37l6-1.57a11.25 11.25 0 0 0 5.35 1.36h.01c6.2 0 11.25-5.05 11.25-11.25 0-3.01-1.17-5.83-3.25-7.96Z"/>
-              </svg>
-              Conversar no WhatsApp
-            </a>
-
-            <a href="mailto:euprogramador484@gmail.com" class="contact__email">
-              euprogramador484@gmail.com
-            </a>
-
-            <div class="contact__socials">
-              <a href="https://github.com/LucasLuz-code" class="social-icon" target="_blank" rel="noopener" aria-label="GitHub">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
-                  <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.06.74.8 1.18 1.83 1.18 3.09 0 4.43-2.69 5.4-5.26 5.69.41.36.78 1.06.78 2.15 0 1.55-.01 2.8-.01 3.18 0 .31.21.67.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
-                </svg>
-              </a>
-              <!-- TODO: trocar SEU-PERFIL pela URL real do LinkedIn e descomentar este bloco.
-              <a href="https://www.linkedin.com/in/SEU-PERFIL/" class="social-icon" target="_blank" rel="noopener" aria-label="LinkedIn">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
-                  <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/>
-                </svg>
-              </a>
-              -->
-            </div>
-          </aside>
         </div>
       </div>
     </section>
@@ -408,15 +424,17 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <p class="footer__text">
-      Lucas Luz &copy; <span id="currentYear"></span> — Desenvolvido por Lucas Luz.
-    </p>
+    <div class="container footer__inner">
+      <p class="footer__text">Lucas Luz &copy; <span id="currentYear"></span> — Desenvolvido por Lucas Luz.</p>
+      <p class="footer__text footer__motto">Ideias <i>/</i> Código <i>/</i> Resultados</p>
+      <p class="footer__text"><span id="localTime">Brasil</span></p>
+    </div>
   </footer>
 
   <!-- Botão Voltar ao Topo -->
   <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
-      <path d="m18 15-6-6-6 6"/>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true">
+      <path d="M12 19V5"/><path d="m6 11 6-6 6 6"/>
     </svg>
   </button>
 

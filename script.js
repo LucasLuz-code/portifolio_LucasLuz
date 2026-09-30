@@ -1,16 +1,60 @@
 'use strict';
 
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 /* ==========================================================================
-   1. NAVBAR: efeito glassmorphism ao rolar
+   1. ROLAGEM: navbar, barra de progresso, voltar ao topo e parallax do retrato
+      (um único listener, sincronizado com requestAnimationFrame)
    ========================================================================== */
 const navbar = document.getElementById('navbar');
+const scrollProgress = document.getElementById('scrollProgress');
+const backToTop = document.getElementById('backToTop');
+const heroPortrait = document.querySelector('.hero__portrait img');
 
-function handleNavbarScroll() {
-  navbar.classList.toggle('scrolled', window.scrollY > 40);
+let lastScrollY = window.scrollY;
+let ticking = false;
+
+function onScroll() {
+  const y = window.scrollY;
+
+  if (navbar) {
+    navbar.classList.toggle('scrolled', y > 40);
+    // Some ao descer, volta ao subir — a navegação nunca disputa atenção com o conteúdo.
+    const descendo = y > lastScrollY && y > window.innerHeight * 0.6;
+    const menuAberto = document.body.classList.contains('menu-open');
+    navbar.classList.toggle('is-hidden', descendo && !menuAberto);
+  }
+
+  if (scrollProgress) {
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    scrollProgress.style.width = `${docHeight > 0 ? (y / docHeight) * 100 : 0}%`;
+  }
+
+  if (backToTop) {
+    backToTop.classList.toggle('visible', y > 500);
+  }
+
+  if (heroPortrait && !prefersReducedMotion && y < window.innerHeight) {
+    heroPortrait.parentElement.style.transform = `translate3d(0, ${y * 0.12}px, 0)`;
+  }
+
+  lastScrollY = y;
+  ticking = false;
 }
 
-window.addEventListener('scroll', handleNavbarScroll);
-handleNavbarScroll();
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    window.requestAnimationFrame(onScroll);
+    ticking = true;
+  }
+}, { passive: true });
+onScroll();
+
+if (backToTop) {
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+  });
+}
 
 /* ==========================================================================
    2. MENU MOBILE (toggle)
@@ -18,19 +62,25 @@ handleNavbarScroll();
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 
+function definirMenu(aberto) {
+  navLinks.classList.toggle('open', aberto);
+  navToggle.classList.toggle('active', aberto);
+  navToggle.setAttribute('aria-expanded', String(aberto));
+  navToggle.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+  document.body.classList.toggle('menu-open', aberto);
+}
+
 if (navToggle && navLinks) {
   navToggle.addEventListener('click', () => {
-    const aberto = navLinks.classList.toggle('open');
-    navToggle.classList.toggle('active', aberto);
-    navToggle.setAttribute('aria-expanded', String(aberto));
+    definirMenu(!navLinks.classList.contains('open'));
   });
 
   navLinks.querySelectorAll('.navbar__link').forEach((link) => {
-    link.addEventListener('click', () => {
-      navToggle.classList.remove('active');
-      navLinks.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    });
+    link.addEventListener('click', () => definirMenu(false));
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && navLinks.classList.contains('open')) definirMenu(false);
   });
 }
 
@@ -57,84 +107,41 @@ const scrollSpyObserver = new IntersectionObserver(
 sections.forEach((section) => scrollSpyObserver.observe(section));
 
 /* ==========================================================================
-   4. FADE-IN AO ROLAR (Intersection Observer)
+   4. REVEAL AO ENTRAR NA VIEWPORT
+      .reveal  → sobe e aparece
+      .mask    → títulos revelados linha a linha
    ========================================================================== */
-const fadeElements = document.querySelectorAll('.fade-in, .fade-up');
+const revealElements = document.querySelectorAll('.reveal, .mask');
 
-const fadeObserver = new IntersectionObserver(
+// Escalona elementos vizinhos (mesmo pai) para a entrada ter ritmo, não um bloco único.
+revealElements.forEach((el) => {
+  const irmaos = [...el.parentElement.children].filter((c) => c.matches('.reveal, .mask'));
+  el.style.setProperty('--delay', `${Math.min(irmaos.indexOf(el), 5) * 0.09}s`);
+});
+
+const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
-        fadeObserver.unobserve(entry.target);
+        revealObserver.unobserve(entry.target);
       }
     });
   },
-  { threshold: 0.15 }
+  { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
 );
 
-fadeElements.forEach((el, index) => {
-  el.style.transitionDelay = `${Math.min(index % 6, 5) * 0.08}s`;
-  fadeObserver.observe(el);
-});
+revealElements.forEach((el) => revealObserver.observe(el));
 
-/* ==========================================================================
-   5. EFEITO DE DIGITAÇÃO NO TÍTULO DA HERO
-   ========================================================================== */
-function typeEffect(elementId, text, speed = 90) {
-  const el = document.getElementById(elementId);
-  let charIndex = 0;
-
-  function type() {
-    if (charIndex < text.length) {
-      el.textContent += text.charAt(charIndex);
-      charIndex++;
-      setTimeout(type, speed);
-    }
-  }
-
-  type();
-}
-
-if (document.getElementById('typedName')) {
-  document.addEventListener('DOMContentLoaded', () => {
-    typeEffect('typedName', 'Lucas Luz', 110);
-  });
+// Entrada do retrato da hero assim que a imagem estiver pronta.
+if (heroPortrait) {
+  const mostrarRetrato = () => document.body.classList.add('is-loaded');
+  if (heroPortrait.complete) mostrarRetrato();
+  else heroPortrait.addEventListener('load', mostrarRetrato, { once: true });
 }
 
 /* ==========================================================================
-   6. BARRA DE PROGRESSO DE ROLAGEM
-   ========================================================================== */
-const scrollProgress = document.getElementById('scrollProgress');
-
-function updateScrollProgress() {
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-  scrollProgress.style.width = `${progress}%`;
-}
-
-window.addEventListener('scroll', updateScrollProgress);
-updateScrollProgress();
-
-/* ==========================================================================
-   7. BOTÃO VOLTAR AO TOPO
-   ========================================================================== */
-const backToTop = document.getElementById('backToTop');
-
-function toggleBackToTop() {
-  backToTop.classList.toggle('visible', window.scrollY > 500);
-}
-
-window.addEventListener('scroll', toggleBackToTop);
-toggleBackToTop();
-
-backToTop.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-/* ==========================================================================
-   8. FORMULÁRIO DE CONTATO (sem backend: abre e-mail ou WhatsApp preenchido)
+   5. FORMULÁRIO DE CONTATO (sem backend: abre e-mail ou WhatsApp preenchido)
    ========================================================================== */
 const contactForm = document.getElementById('contactForm');
 const whatsappBtn = document.getElementById('whatsappBtn');
@@ -264,7 +271,26 @@ if (contactForm) {
 }
 
 /* ==========================================================================
-   9. ANO ATUAL NO RODAPÉ
+   6. ANO ATUAL NO RODAPÉ
    ========================================================================== */
 const anoAtual = document.getElementById('currentYear');
 if (anoAtual) anoAtual.textContent = new Date().getFullYear();
+
+/* ==========================================================================
+   7. HORA LOCAL NO RODAPÉ (Brasil, GMT-3)
+   ========================================================================== */
+const horaLocal = document.getElementById('localTime');
+
+function atualizarHora() {
+  const hora = new Intl.DateTimeFormat('pt-BR', {
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'America/Sao_Paulo',
+  }).format(new Date());
+  horaLocal.textContent = `Brasil — ${hora} (GMT-3)`;
+}
+
+if (horaLocal) {
+  atualizarHora();
+  setInterval(atualizarHora, 30000);
+}
